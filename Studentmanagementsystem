@@ -1,0 +1,122 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+class Student {
+    // Attributes
+    public String name;
+    private int age;
+    private String dob;
+    private String rollNumber;
+    public String department;
+    public String gender;
+
+    // Constructor
+    public Student(String name, int age, String dob, String rollNumber, String department, String gender) {
+        this.name = name;
+        this.age = age;
+        this.dob = dob;
+        this.rollNumber = rollNumber;
+        this.department = department;
+        this.gender = gender;
+    }
+
+    // Getters and Setters
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        if (age >= 15 && age <= 30)
+            this.age = age;
+        else
+            System.out.println("Invalid age. Must be between 15 and 30.");
+    }
+
+    public String getDob() {
+        return dob;
+    }
+
+    public void setDob(String dob) {
+        this.dob = dob;
+    }
+
+    public String getRollNumber() {
+        return rollNumber;
+    }
+
+    public void setRollNumber(String rollNumber) {
+        this.rollNumber = rollNumber;
+    }
+
+    // Display student info
+    @Override
+    public String toString() {
+        return "Name       : " + name +
+               "\nAge        : " + age +
+               "\nDOB        : " + dob +
+               "\nRoll No    : " + rollNumber +
+               "\nDepartment : " + department +
+               "\nGender     : " + gender + "\n";
+    }
+}
+
+public class StudentManagementSystem {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        ArrayList<Student> studentList = new ArrayList<>();
+
+        System.out.println("Welcome to SGGS Student Management System");
+
+        while (true) {
+            System.out.println("\nMenu:");
+            System.out.println("1. Add Student");
+            System.out.println("2. View All Students");
+            System.out.println("3. Exit");
+            System.out.print("Choose an option: ");
+            int choice = sc.nextInt();
+            sc.nextLine(); // clear input buffer
+
+            switch (choice) {
+                case 1:
+                    System.out.print("Enter Name: ");
+                    String name = sc.nextLine();
+
+                    System.out.print("Enter Age: ");
+                    int age = sc.nextInt();
+                    sc.nextLine();
+
+                    System.out.print("Enter DOB (dd/mm/yyyy): ");
+                    String dob = sc.nextLine();
+
+                    System.out.print("Enter Roll Number: ");
+                    String roll = sc.nextLine();
+
+                    System.out.print("Enter Department: ");
+                    String dept = sc.nextLine();
+
+                    System.out.print("Enter Gender: ");
+                    String gender = sc.nextLine();
+
+                    Student student = new Student(name, age, dob, roll, dept, gender);
+                    studentList.add(student);
+                    System.out.println("Student added successfully.");
+                    break;
+
+                case 2:
+                    System.out.println("\nList of Students:");
+                    for (Student s : studentList) {
+                        System.out.println(s);
+                    }
+                    break;
+
+                case 3:
+                    System.out.println("Exiting Student Management System.");
+                    sc.close();
+                    return;
+
+                default:
+                    System.out.println("Invalid choice. Please try again.");
+            }
+        }
+    }
+}
