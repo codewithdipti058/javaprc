@@ -1,0 +1,96 @@
+
+public class Main {
+    public static void main(String[] args) {
+        int size = 5; // You can change this size to make the letters bigger or smaller
+        printD(size);
+        printI(size);
+        printP(size);
+        printT(size);
+        printI(size);
+    }
+
+    // Method to print 'D'
+    public static void printD(int size) {
+        for (int i = 0; i < size; i++) {
+            System.out.print("*");  // Left vertical line of D
+            
+            if (i == 0 || i == size - 1) {
+                // Print the top and bottom horizontal lines of D
+                for (int j = 0; j < size - 1; j++) {
+                    System.out.print("*");
+                }
+            } else {
+                // Print the curve part of D
+                for (int j = 0; j < size - 2; j++) {
+                    System.out.print(" ");
+                }
+                System.out.print("*");
+            }
+            System.out.println();
+        }
+    }
+
+    // Method to print 'I'
+    public static void printI(int size) {
+        for (int i = 0; i < size; i++) {
+            if (i == 0 || i == size - 1) {
+                // Print the top and bottom rows of 'I'
+                for (int j = 0; j < size; j++) {
+                    System.out.print("*");
+                }
+            } else {
+                // Print the vertical line of 'I' (middle part)
+                printSpaces((size - 1) / 2);  // Spaces before the star
+                System.out.print("*");
+            }
+            System.out.println();
+        }
+    }
+
+    // Method to print 'P'
+    public static void printP(int size) {
+        for (int i = 0; i < size; i++) {
+            if (i == 0 || i == size / 2) {
+                // Print the top and middle horizontal parts of 'P'
+                for (int j = 0; j < size / 2; j++) {
+                    System.out.print("*");
+                }
+            } else if (i < size / 2) {
+                // Print the left vertical line of 'P'
+                System.out.print("*");
+                for (int j = 0; j < size / 2 - 1; j++) {
+                    System.out.print(" ");
+                }
+                System.out.print("*");  // Right vertical line for P
+            } else {
+                // After middle, just print left vertical line
+                System.out.print("*");
+            }
+            System.out.println();
+        }
+    }
+
+    // Method to print 'T'
+    public static void printT(int size) {
+        for (int i = 0; i < size; i++) {
+            if (i == 0) {
+                // Print the top horizontal line of T
+                for (int j = 0; j < size; j++) {
+                    System.out.print("*");
+                }
+            } else {
+                // Print the vertical line at the center of T
+                printSpaces((size - 1) / 2); // Spaces before the star
+                System.out.print("*"); // Vertical line of T
+            }
+            System.out.println();
+        }
+    }
+
+    // Helper method to print spaces (for Java 8 compatibility)
+    public static void printSpaces(int count) {
+        for (int i = 0; i < count; i++) {
+            System.out.print(" ");
+        }
+    }
+} 
