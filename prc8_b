@@ -1,0 +1,66 @@
+import java.util.Scanner;
+
+public class StringPerformance {
+
+    // Method to test String.concat()
+    public static void testStringConcat(int iterations) {
+        long startTime = System.currentTimeMillis();
+        String str = "";
+        for (int i = 0; i < iterations; i++) {
+            str = str.concat("a");  // Creates a new String object each time
+        }
+        long endTime = System.currentTimeMillis();
+        System.out.println("Time using String.concat(): " + (endTime - startTime) + " ms");
+    }
+
+    // Method to test String with + operator
+    public static void testStringWithPlusOperator(int iterations) {
+        long startTime = System.currentTimeMillis();
+        String str = "";
+        for (int i = 0; i < iterations; i++) {
+            str += "a";  // Creates a new String object each time
+        }
+        long endTime = System.currentTimeMillis();
+        System.out.println("Time using String (+ operator): " + (endTime - startTime) + " ms");
+    }
+
+    // Method to test StringBuffer
+    public static void testStringBuffer(int iterations) {
+        long startTime = System.currentTimeMillis();
+        StringBuffer buffer = new StringBuffer();
+        for (int i = 0; i < iterations; i++) {
+            buffer.append("a");  // Does not create a new object
+        }
+        long endTime = System.currentTimeMillis();
+        System.out.println("Time using StringBuffer: " + (endTime - startTime) + " ms");
+    }
+
+    // Method to test StringBuilder
+    public static void testStringBuilder(int iterations) {
+        long startTime = System.currentTimeMillis();
+        StringBuilder builder = new StringBuilder();
+        for (int i = 0; i < iterations; i++) {
+            builder.append("a");  // Does not create a new object
+        }
+        long endTime = System.currentTimeMillis();
+        System.out.println("Time using StringBuilder: " + (endTime - startTime) + " ms");
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        // Allow the user to input the number of iterations for the performance test
+        System.out.println("Enter the number of iterations for string concatenation tests:");
+        int iterations = scanner.nextInt();
+
+        System.out.println("Performing string concatenation tests for " + iterations + " iterations...\n");
+        
+        // Evaluate performance for each string operation
+        testStringConcat(iterations);
+        testStringWithPlusOperator(iterations);
+        testStringBuffer(iterations);
+        testStringBuilder(iterations);
+
+        scanner.close();
+    }
+}
