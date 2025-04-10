@@ -1,0 +1,85 @@
+import java.util.Scanner;
+
+public class KitePatternWithTail {
+
+    // Recursive function to print the upper part (diamond shape)
+    public static void printUpperPart(int row, int size) {
+        if (row > size) {
+            return; // Base case: if row is greater than size, stop recursion
+        }
+
+        // Print leading spaces
+        for (int space = 1; space <= size - row; space++) {
+            System.out.print(" ");
+        }
+
+        // Print stars for the current row
+        for (int star = 1; star <= (2 * row - 1); star++) {
+            System.out.print("*");
+        }
+
+        System.out.println(); // Move to the next line
+
+        // Recursive call to print the next row
+        printUpperPart(row + 1, size);
+    }
+
+    // Recursive function to print the lower part (inverted pyramid shape)
+    public static void printLowerPart(int row, int size) {
+        if (row <= 0) {
+            return; // Base case: if row is less than or equal to 0, stop recursion
+        }
+
+        // Print leading spaces
+        for (int space = 1; space <= size - row; space++) {
+            System.out.print(" ");
+        }
+
+        // Print stars for the current row
+        for (int star = 1; star <= (2 * row - 1); star++) {
+            System.out.print("*");
+        }
+
+        System.out.println(); // Move to the next line
+
+        // Recursive call to print the previous row
+        printLowerPart(row - 1, size);
+    }
+
+    // Recursive function to print the tail part of the kite
+    public static void printTail(int row, int size) {
+        if (row >= size) {
+            return; // Base case: stop when we've printed enough rows
+        }
+
+        // Print leading spaces for the tail to align with the mid column
+        for (int space = 1; space <= size - 1; space++) {
+            System.out.print(" ");
+        }
+
+        // Print the tail (a single star)
+        System.out.println("*");
+
+        // Recursive call to print the next row of the tail
+        printTail(row + 1, size);
+    }
+
+    // Function to print the complete kite pattern with tail
+    public static void printKitePatternWithTail(int size) {
+        printUpperPart(1, size);  // Print upper part of the kite
+        printLowerPart(size - 1, size);  // Print lower part of the kite (start from size-1)
+        printTail(0, size);       // Print the tail part of the kite (start from row 0)
+    }
+
+    // Main method to run the program
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        System.out.print("Enter the size of the kite: ");
+        int size = scanner.nextInt();
+        
+        printKitePatternWithTail(size); // Print the kite pattern with the tail
+        
+        scanner.close();
+    }
+}
