@@ -1,0 +1,53 @@
+import java.util.Scanner;
+
+public class CustomPattern {
+
+    // Constructor to print the custom pattern
+    public CustomPattern(int size) {
+        // Part 1: Upper pyramid with stars ('*')
+        for (int row = 1; row <= size; row++) {
+            // Print leading spaces
+            for (int spaces = 1; spaces <= size - row; spaces++) {
+                System.out.print(" ");
+            }
+            // Print stars ('*')
+            for (int stars = 1; stars <= row; stars++) {
+                System.out.print("*");
+            }
+            System.out.println(); // Move to the next line
+        }
+        
+        // Part 2: Middle line with plus ('+')
+        for (int i = 1; i <= (2 * size - 1); i++) {
+            System.out.print("+");
+        }
+        System.out.println(); // Move to the next line
+        
+        // Part 3: Lower pyramid with slashes ('/')
+        for (int row = size - 1; row >= 1; row--) {
+            // Print leading spaces
+            for (int spaces = 1; spaces <= size - row; spaces++) {
+                System.out.print(" ");
+            }
+            // Print slashes ('/')
+            for (int slashes = 1; slashes <= row; slashes++) {
+                System.out.print("/");
+            }
+            System.out.println(); // Move to the next line
+        }
+    }
+
+    // Main method to run the program
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        // Take user input for the size of the pattern
+        System.out.print("Enter the size: ");
+        int size = scanner.nextInt();
+        
+        // Generate the custom pattern with the given size
+        new CustomPattern(size);
+        
+        scanner.close();
+    }
+}
