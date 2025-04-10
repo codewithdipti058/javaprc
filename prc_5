@@ -1,0 +1,54 @@
+public class StarSlashPattern {
+
+    // Constructor to generate the pattern
+    public StarSlashPattern(int size) {
+        // Upper half including the middle row
+        for (int row = 1; row <= size; row++) {
+            // Print leading spaces for centering
+            for (int space = 1; space <= size - row; space++) {
+                System.out.print(" ");
+            }
+
+            // Print stars (*) for odd rows and forward slashes (/) for even rows
+            if (row % 2 != 0) { // Odd row: print stars (*)
+                for (int col = 1; col <= 2 * row - 1; col++) {
+                    System.out.print("*");
+                }
+            } else { // Even row: print forward slashes (/)
+                for (int col = 1; col <= 2 * row - 1; col++) {
+                    System.out.print("/");
+                }
+            }
+
+            // Move to the next line
+            System.out.println();
+        }
+
+        // Lower half (inverted triangle)
+        for (int row = size - 1; row >= 1; row--) {
+            // Print leading spaces for centering
+            for (int space = 1; space <= size - row; space++) {
+                System.out.print(" ");
+            }
+
+            // Print stars (*) for odd rows and forward slashes (/) for even rows
+            if (row % 2 != 0) { // Odd row: print stars (*)
+                for (int col = 1; col <= 2 * row - 1; col++) {
+                    System.out.print("*");
+                }
+            } else { // Even row: print forward slashes (/)
+                for (int col = 1; col <= 2 * row - 1; col++) {
+                    System.out.print("/");
+                }
+            }
+
+            // Move to the next line
+            System.out.println();
+        }
+    }
+
+    public static void main(String[] args) {
+        int size = 5; // Set the size of the pyramid, change this value to get a bigger or smaller pattern
+        StarSlashPattern pattern = new StarSlashPattern(size); // Generate the pattern
+    }
+}
