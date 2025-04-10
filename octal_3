@@ -1,0 +1,25 @@
+public class OctalConversion {
+
+    // Method to convert decimal to octal manually
+    public static String toOctalSystem(int number) {
+        StringBuilder octal = new StringBuilder();
+        
+        // If number is 0, return "0"
+        if (number == 0) {
+            return "0";
+        }
+        
+        // Divide the number by 8 and store remainders (octal digits)
+        while (number > 0) {
+            octal.insert(0, number % 8); // Insert remainder at the beginning
+            number = number / 8; // Divide the number by 8
+        }
+        
+        return octal.toString();
+    }
+
+    public static void main(String[] args) {
+        int number = 10; // Example number
+        System.out.println("Octal of " + number + " is: " + toOctalSystem(number));
+    }
+}
