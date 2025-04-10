@@ -1,0 +1,28 @@
+public class HexadecimalConversion {
+
+    // decimal to hexadecimal manually
+    public static String toHexadecimalSystem(int number) {
+        StringBuilder hexadecimal = new StringBuilder();
+        
+        
+        if (number == 0) {
+            return "0";
+        }
+
+        // a character array for hexadecimal digits
+        char[] hexDigits = "0123456789ABCDEF".toCharArray();
+        
+        // Divide the number by 16 and store remainders (hexadecimal digits)
+        while (number > 0) {
+            hexadecimal.insert(0, hexDigits[number % 16]); // Insert remainder at the beginning
+            number = number / 16; // Divide the number by 16
+        }
+        
+        return hexadecimal.toString();
+    }
+
+    public static void main(String[] args) {
+        int number = 10; // Example number
+        System.out.println("Hexadecimal of " + number + " is: " + toHexadecimalSystem(number));
+    }
+}
