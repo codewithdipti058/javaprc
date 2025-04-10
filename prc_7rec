@@ -1,0 +1,91 @@
+import java.util.Scanner;
+
+public class CustomPattern {
+
+    // Function to print the upper pyramid
+    public static void printUpperPyramid(int size, int row) {
+        // Base condition: if row > size, stop recursion
+        if (row > size) {
+            return;
+        }
+        
+        // Print leading spaces
+        for (int i = 0; i < size - row; i++) {
+            System.out.print(" ");
+        }
+        
+        // Print stars and slashes alternatively for odd and even rows
+        if (row % 2 != 0) {
+            for (int i = 0; i < (2 * row - 1); i++) {
+                System.out.print("*");
+            }
+        } else {
+            for (int i = 0; i < (2 * row - 1); i++) {
+                System.out.print("/");
+            }
+        }
+        
+        // Move to the next line
+        System.out.println();
+        
+        // Recursively call the function to print the next row
+        printUpperPyramid(size, row + 1);
+    }
+
+    // Function to print the lower pyramid
+    public static void printLowerPyramid(int size, int row) {
+        // Base condition: if row <= 0, stop recursion
+        if (row <= 0) {
+            return;
+        }
+        
+        // Print leading spaces
+        for (int i = 0; i < size - row; i++) {
+            System.out.print(" ");
+        }
+        
+        // Print stars and slashes alternatively for odd and even rows
+        if (row % 2 != 0) {
+            for (int i = 0; i < (2 * row - 1); i++) {
+                System.out.print("*");
+            }
+        } else {
+            for (int i = 0; i < (2 * row - 1); i++) {
+                System.out.print("/");
+            }
+        }
+        
+        // Move to the next line
+        System.out.println();
+        
+        // Recursively call the function to print the next row
+        printLowerPyramid(size, row - 1);
+    }
+
+    // Function to print the middle line of stars
+    public static void printMiddleLine(int size) {
+        for (int i = 0; i < (2 * size - 1); i++) {
+            System.out.print("*");
+        }
+        System.out.println();
+    }
+
+    // Main method to drive the pattern printing
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        System.out.print("Enter the size: ");
+        int size = scanner.nextInt();
+        
+        // Print upper pyramid
+        printUpperPyramid(size, 1);
+        
+        // Print the middle line of stars
+        printMiddleLine(size);
+        
+        // Print lower pyramid
+        printLowerPyramid(size, size - 1);
+        
+        scanner.close();
+    }
+}
