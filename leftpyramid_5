@@ -1,0 +1,33 @@
+public class LeftPyramid {
+
+    // Constructor that takes the size of the pyramid (number of rows)
+    public LeftPyramid(int size) {
+        
+        // Upper half of the pyramid
+        for (int row = 1; row <= size; row++) {
+            // Print stars in each row
+            for (int star = 1; star <= row; star++) {
+                System.out.print("*");
+            }
+
+            // Move to the next line
+            System.out.println();
+        }
+
+        // Lower half of the pyramid
+        for (int row = size - 1; row >= 1; row--) {
+            // Print stars in each row
+            for (int star = 1; star <= row; star++) {
+                System.out.print("*");
+            }
+
+            // Move to the next line
+            System.out.println();
+        }
+    }
+
+    public static void main(String[] args) {
+        int size = 5; // You can change the size as needed
+        LeftPyramid pyramid = new LeftPyramid(size); // Create an object with the size
+    }
+}
