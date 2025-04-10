@@ -1,0 +1,142 @@
+import java.util.Random;
+
+public class Sudoku {
+    private int[][] board;
+    private final int size = 9;
+    private final int SUBGRID = 3;
+
+    public Sudoku() {
+        board = new int[size][size];
+        generateSudoku();
+    }
+
+    // Main method to generate puzzle
+    private void generateSudoku() {
+        fillDiagonal();
+        fillRemaining(0, SUBGRID);
+        removeCells(40); // adjust for difficulty
+    }
+
+    // Fill diagonal 3x3 boxes
+    private void fillDiagonal() {
+        for (int i = 0; i < size; i += SUBGRID) {
+            fillBox(i, i);
+        }
+    }
+
+    // Fill a 3x3 box starting at (row, col)
+    private void fillBox(int row, int col) {
+        Random rand = new Random();
+        int num;
+        for (int i = 0; i < SUBGRID; i++) {
+            for (int j = 0; j < SUBGRID; j++) {
+                do {
+                    num = rand.nextInt(9) + 1;
+                } while (!isUnusedInBox(row, col, num));
+                board[row + i][col + j] = num;
+            }
+        }
+    }
+
+    private boolean isUnusedInBox(int rowStart, int colStart, int num) {
+        for (int i = 0; i < SUBGRID; i++) {
+            for (int j = 0; j < SUBGRID; j++) {
+                if (board[rowStart + i][colStart + j] == num)
+                    return false;
+            }
+        }
+        return true;
+    }
+
+    private boolean fillRemaining(int i, int j) {
+        if (j >= size && i < size - 1) {
+            i++;
+            j = 0;
+        }
+        if (i >= size && j >= size)
+            return true;
+
+        if (i < SUBGRID) {
+            if (j < SUBGRID)
+                j = SUBGRID;
+        } else if (i < size - SUBGRID) {
+            if (j == (i / SUBGRID) * SUBGRID)
+                j += SUBGRID;
+        } else {
+            if (j == size - SUBGRID) {
+                i++;
+                j = 0;
+                if (i >= size)
+                    return true;
+            }
+        }
+
+        for (int num = 1; num <= size; num++) {
+            if (isSafe(i, j, num)) {
+                board[i][j] = num;
+                if (fillRemaining(i, j + 1))
+                    return true;
+                board[i][j] = 0;
+            }
+        }
+
+        return false;
+    }
+
+    private boolean isSafe(int i, int j, int num) {
+        return isRowSafe(i, num) && isColSafe(j, num) && isUnusedInBox(i - i % SUBGRID, j - j % SUBGRID, num);
+    }
+
+    private boolean isRowSafe(int i, int num) {
+        for (int j = 0; j < size; j++) {
+            if (board[i][j] == num)
+                return false;
+        }
+        return true;
+    }
+
+    private boolean isColSafe(int j, int num) {
+        for (int i = 0; i < size; i++) {
+            if (board[i][j] == num)
+                return false;
+        }
+        return true;
+    }
+
+    // Remove numbers to create the puzzle
+    private void removeCells(int count) {
+        Random rand = new Random();
+        while (count > 0) {
+            int i = rand.nextInt(size);
+            int j = rand.nextInt(size);
+            if (board[i][j] != 0) {
+                board[i][j] = 0;
+                count--;
+            }
+        }
+    }
+
+    // Print the board in nice format
+    public void printBoard() {
+        String horizontalLine = "|----|----|----|----|----|----|----|----|----|";
+        for (int i = 0; i < size; i++) {
+            System.out.println(horizontalLine);
+            for (int j = 0; j < size; j++) {
+                System.out.print("|  ");
+                if (board[i][j] == 0)
+                    System.out.print("  ");
+                else
+                    System.out.print(board[i][j] + " ");
+            }
+            System.out.println("|");
+        }
+        System.out.println(horizontalLine);
+    }
+
+    // Main method to run the program
+    public static void main(String[] args) {
+        Sudoku sudoku = new Sudoku();
+        System.out.println("Generated Sudoku Puzzle:\n");
+        sudoku.printBoard();
+    }
+}
