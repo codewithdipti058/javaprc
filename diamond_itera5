@@ -1,0 +1,43 @@
+public class DiamondPattern {
+    
+    // Constructor that takes the size of the upper half of the diamond (number of rows)
+    public DiamondPattern(int size) {
+        
+        // Print the upper half of the diamond
+        for (int row = 1; row <= size; row++) {
+            // Print spaces
+            for (int column = row; column < size; column++) {
+                System.out.print(" ");
+            }
+
+            // Print stars
+            for (int column = 1; column <= (2 * row - 1); column++) {
+                System.out.print("*");
+            }
+
+            // Move to the next line
+            System.out.println();
+        }
+
+        // Print the lower half of the diamond
+        for (int row = size - 1; row >= 1; row--) {
+            // Print spaces
+            for (int column = size; column > row; column--) {
+                System.out.print(" ");
+            }
+
+            // Print stars
+            for (int column = 1; column <= (2 * row - 1); column++) {
+                System.out.print("*");
+            }
+
+            // Move to the next line
+            System.out.println();
+        }
+    }
+
+    public static void main(String[] args) {
+        int size = 5; // You can change the size as needed
+        DiamondPattern diamond = new DiamondPattern(size); // Create an object with the size
+    }
+}
