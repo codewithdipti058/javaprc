@@ -1,0 +1,68 @@
+// Base class
+class LivingBeing {
+    void describe() {
+        System.out.println("LivingBeing: All living beings share basic characteristics like breathing.");
+    }
+}
+
+// First-level subclass
+class HumanBeing extends LivingBeing {
+    void describeHuman() {
+        System.out.println("HumanBeing: Humans can think, speak, and feel emotions.");
+    }
+}
+
+// Another first-level subclass
+class Animal extends LivingBeing {
+    void describeAnimal() {
+        System.out.println("Animal: Animals are multicellular organisms that move.");
+    }
+}
+
+// Subclass of Animal
+class Mammal extends Animal {
+    void describeMammal() {
+        System.out.println("Mammal: Warm-blooded animals with hair or fur.");
+        System.out.println("Example: Cow is a mammal that gives milk.");
+    }
+}
+
+// Subclass of Animal
+class NonMammal extends Animal {
+    void describeNonMammal() {
+        System.out.println("NonMammal: Cold-blooded animals, many lay eggs.");
+        System.out.println("Example: Bird is a non-mammal that has feathers and most can fly.");
+    }
+}
+
+// Main class to run the hierarchy
+public class HierarchicalInheritanceSimple {
+    public static void main(String[] args) {
+
+        System.out.println("=== LivingBeing ===");
+        LivingBeing lb = new LivingBeing();
+        lb.describe();
+
+        System.out.println("\n=== HumanBeing (subclass of LivingBeing) ===");
+        HumanBeing human = new HumanBeing();
+        human.describe();
+        human.describeHuman();
+
+        System.out.println("\n=== Animal (subclass of LivingBeing) ===");
+        Animal animal = new Animal();
+        animal.describe();
+        animal.describeAnimal();
+
+        System.out.println("\n=== Mammal (subclass of Animal) ===");
+        Mammal mammal = new Mammal();
+        mammal.describe();
+        mammal.describeAnimal();
+        mammal.describeMammal();
+
+        System.out.println("\n=== NonMammal (subclass of Animal) ===");
+        NonMammal nonMammal = new NonMammal();
+        nonMammal.describe();
+        nonMammal.describeAnimal();
+        nonMammal.describeNonMammal();
+    }
+}
